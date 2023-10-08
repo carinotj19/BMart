@@ -6,4 +6,10 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
 
     <string name="sign_up">Sign Up</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="hello_cart">Hello Cart</string>
+    <string name="hello_messages">Hello Messages</string>
+    <string name="hello_search">Hello Search</string>
 </resources>
