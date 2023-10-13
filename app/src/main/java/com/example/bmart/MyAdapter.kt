@@ -4,11 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
-class MyAdapter(var context: Context, private var newsArrayList: ArrayList<News>) :
+class MyAdapter(var context: Context, private var vendorsArrayList: ArrayList<Vendors>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.itemlist, parent, false)
@@ -16,22 +17,26 @@ class MyAdapter(var context: Context, private var newsArrayList: ArrayList<News>
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val news = newsArrayList[position]
-        holder.heading.text = news.heading
-        holder.title.setImageResource(news.titleImage)
+        val vendors = vendorsArrayList[position]
+        holder.vendorsName.text = vendors.vendorsName
+        holder.vendorsImage.setImageResource(vendors.vendorsImage)
     }
 
     override fun getItemCount(): Int {
-        return newsArrayList.size
+        return vendorsArrayList.size
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: ShapeableImageView
-        var heading: TextView
+        var vendorsImage: ImageView
+        var vendorsName: TextView
+        var vendorsRating: TextView
+        var vendorLocation: TextView
 
         init {
-            title = itemView.findViewById(R.id.title_image)
-            heading = itemView.findViewById(R.id.heading)
+            vendorsImage = itemView.findViewById(R.id.vendor_image)
+            vendorsName = itemView.findViewById(R.id.vendor_name)
+            vendorsRating = itemView.findViewById(R.id.vendor_rate)
+            vendorLocation = itemView.findViewById(R.id.vendor_loc)
         }
     }
 }

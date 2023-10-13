@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.MyAdapter
-import com.example.bmart.News
+import com.example.bmart.Vendors
 import com.example.bmart.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -19,7 +19,7 @@ private const val ARG_PARAM2 = "param2"
 
 class Home : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var newsArrayList: ArrayList<News>
+    private lateinit var vendorsArrayList: ArrayList<Vendors>
     private var param1: String? = null
     private var param2: String? = null
 
@@ -57,29 +57,45 @@ class Home : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        var myAdapter = MyAdapter(requireContext(), newsArrayList)
+        var myAdapter = MyAdapter(requireContext(), vendorsArrayList)
         recyclerView.adapter = myAdapter
         myAdapter.notifyDataSetChanged()
 
     }
 
     private fun dataInitialize() {
-        newsArrayList = arrayListOf<News>()
+        vendorsArrayList = arrayListOf<Vendors>()
 
-        val newsHeading = arrayOf(
-            getString(R.string.head_1),
-            getString(R.string.head_2),
-            getString(R.string.head_3),
-            getString(R.string.head_4),
-            getString(R.string.head_5),
-            getString(R.string.head_6),
-            getString(R.string.head_7),
-            getString(R.string.head_8),
-            getString(R.string.head_9),
-            getString(R.string.head_10)
+        val vendorsName = arrayOf(
+            getString(R.string.vendors_a),
+            getString(R.string.vendors_b),
+            getString(R.string.vendors_c),
+            getString(R.string.vendors_d),
+            getString(R.string.vendors_e),
+            getString(R.string.vendors_f),
+            getString(R.string.vendors_g),
+            getString(R.string.vendors_h),
+            getString(R.string.vendors_i),
+            getString(R.string.vendors_j),
         )
 
-        val imageResourceIds = intArrayOf(
+        val vendorsRating = floatArrayOf(4.5f, 4.2f, 3.8f, 4.0f, 3.7f, 4.1f, 3.9f, 4.3f, 4.4f, 3.6f)
+
+
+        val vendorsLocation = arrayOf(
+            getString(R.string.location_a),
+            getString(R.string.location_b),
+            getString(R.string.location_c),
+            getString(R.string.location_d),
+            getString(R.string.location_e),
+            getString(R.string.location_f),
+            getString(R.string.location_g),
+            getString(R.string.location_h),
+            getString(R.string.location_i),
+            getString(R.string.location_j),
+        )
+
+        val vendorsImage = intArrayOf(
             R.drawable.a,
             R.drawable.b,
             R.drawable.c,
@@ -92,9 +108,9 @@ class Home : Fragment() {
             R.drawable.j
         )
 
-        for (i in newsHeading.indices) {
-            val news = News(newsHeading[i], imageResourceIds[i])
-            newsArrayList.add(news)
+        for (i in vendorsName.indices) {
+            val vendors = Vendors(vendorsName[i], vendorsImage[i], vendorsRating[i], vendorsLocation[i])
+            vendorsArrayList.add(vendors)
         }
     }
 
