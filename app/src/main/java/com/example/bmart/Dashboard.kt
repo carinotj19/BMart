@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -72,8 +73,8 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-            drawerLayout.closeDrawer(GravityCompat.END)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -81,10 +82,10 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                drawerLayout.closeDrawer(GravityCompat.END)
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
             } else {
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.START)
             }
             return true
         }
@@ -101,41 +102,41 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         when (item.itemId) {
             R.id.profile -> {
                 Toast.makeText(applicationContext, "Clicked Profile", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.favourites -> {
                 Toast.makeText(applicationContext, "Clicked favourites", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.orders -> {
                 Toast.makeText(applicationContext, "Clicked orders", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.help -> {
                 Toast.makeText(applicationContext, "Clicked help", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.privacy -> {
                 Toast.makeText(applicationContext, "Clicked privacy", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.terms -> {
                 Toast.makeText(applicationContext, "Clicked terms", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
             R.id.logOut -> {
                 Toast.makeText(applicationContext, "Clicked logOut", Toast.LENGTH_SHORT).show()
-                drawerLayout.closeDrawer(GravityCompat.END)
+                drawerLayout.closeDrawer(GravityCompat.START)
                 return true
             }
         }
-        drawerLayout.closeDrawer(GravityCompat.END)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

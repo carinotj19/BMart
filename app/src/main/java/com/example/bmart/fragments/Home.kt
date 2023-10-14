@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.MyAdapter
@@ -57,10 +61,26 @@ class Home : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        var myAdapter = MyAdapter(requireContext(), vendorsArrayList)
+        val myAdapter = MyAdapter(requireContext(), vendorsArrayList)
         recyclerView.adapter = myAdapter
         myAdapter.notifyDataSetChanged()
 
+        val spinner = view.findViewById<Spinner>(R.id.spinnerCategory)
+        val categories = arrayOf("Category 1", "Category 2", "Category 3", "Category 4")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCategory = categories[position]
+                Toast.makeText(requireContext(), "Selected Category: $selectedCategory", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(requireContext(), "Nothing was selected", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun dataInitialize() {
