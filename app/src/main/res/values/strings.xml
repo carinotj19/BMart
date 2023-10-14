@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">BMart</string>
-
+    <string name="nav_bar_open">Open</string>
+    <string name="nav_bar_close">Close</string>
     <string name="log_in">Log In</string>
 
     <string name="don_t_have_an_account">Don\'t have an account?</string>
@@ -12,4 +13,30 @@
     <string name="hello_cart">Hello Cart</string>
     <string name="hello_messages">Hello Messages</string>
     <string name="hello_search">Hello Search</string>
+
+    <string name="vendors_a">Vendor A</string>
+    <string name="vendors_b">Vendor B</string>
+    <string name="vendors_c">Vendor C</string>
+    <string name="vendors_d">Vendor D</string>
+    <string name="vendors_e">Vendor E</string>
+    <string name="vendors_f">Vendor F</string>
+    <string name="vendors_g">Vendor G</string>
+    <string name="vendors_h">Vendor H</string>
+    <string name="vendors_i">Vendor I</string>
+    <string name="vendors_j">Vendor J</string>
+    <string name="vendors_k">Vendor K</string>
+    <string name="vendors_l">Vendor L</string>
+
+    <string name="location_a">New York</string>
+    <string name="location_b">Los Angeles</string>
+    <string name="location_c">London</string>
+    <string name="location_d">Paris</string>
+    <string name="location_e">Tokyo</string>
+    <string name="location_f">Sydney</string>
+    <string name="location_g">Toronto</string>
+    <string name="location_h">Berlin</string>
+    <string name="location_i">Singapore</string>
+    <string name="location_j">Dubai</string>
+
+
 </resources>

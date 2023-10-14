@@ -10,6 +10,7 @@
         android:title="Search" />
     <item
         android:id="@+id/messages"
+        android:icon="@drawable/outline_message_24"
         android:title="Messages" />
     <item
         android:id="@+id/cart"
