@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.imageview.ShapeableImageView
 
 class MyAdapter(var context: Context, private var vendorsArrayList: ArrayList<Vendors>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(context).inflate(R.layout.itemlist, parent, false)
+        val v = LayoutInflater.from(context).inflate(R.layout.vendor_list, parent, false)
         return MyViewHolder(v)
     }
 
