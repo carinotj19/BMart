@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/cart_checkout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_icon"
+            app:tint="@color/primary"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/strawberry"/>
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/minus"
+                android:layout_toLeftOf="@id/item_quantity"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/item_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="40dp"/>
+
+            <ImageButton
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/add"
+                android:layout_toRightOf="@id/item_quantity"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitCenter"
+                app:tint="@color/primary" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:id="@+id/item_selected_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Strawberry"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="35dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="14dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="200 sold"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginStart="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="per kilo"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="24dp"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            android:textSize="15dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <RelativeLayout
+            android:id="@+id/cart_checkout_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/item_selected_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toLeftOf="@id/add_order"
+                android:fontFamily="@font/poppins_bold"
+                android:text="$20.00"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+            <Button
+                android:id="@+id/add_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Add Order"
+                android:textSize="24dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

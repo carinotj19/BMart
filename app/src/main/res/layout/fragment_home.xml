@@ -28,7 +28,7 @@
             />
     </LinearLayout>
 
-    <!-- Category dropdown (You can replace this with your desired dropdown widget) -->
+    <!-- Category dropdown -->
     <Spinner
         android:id="@+id/spinnerCategory"
         android:layout_width="match_parent"
