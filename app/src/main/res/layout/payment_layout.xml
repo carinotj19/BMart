@@ -33,7 +33,7 @@
                 android:layout_marginEnd="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/item_select"
+                android:src="@drawable/select_icon_outline"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/primary"/>
 
@@ -76,7 +76,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/item_select"
+                android:src="@drawable/select_icon_outline"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:tint="@color/primary" />
 

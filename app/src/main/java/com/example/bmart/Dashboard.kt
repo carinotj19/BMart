@@ -1,8 +1,10 @@
 package com.example.bmart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -72,6 +74,7 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -92,10 +95,17 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         return super.onOptionsItemSelected(item)
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frameLayout, fragment)
             .commit()
+
+        if (fragment is Home) {
+            supportActionBar?.show()
+            bottomNavigationView.visibility = View.VISIBLE
+        } else {
+            supportActionBar?.hide()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -140,4 +150,14 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            val receivedData = data?.getStringExtra("fragment")
+
+            if (receivedData == "cart"){
+                replaceFragment(Cart())
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@
                 android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/minus"
+                android:src="@drawable/add"
                 android:layout_toLeftOf="@id/item_quantity"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"

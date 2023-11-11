@@ -7,7 +7,7 @@
         android:title="Profile" />
     <item
         android:id="@+id/favourites"
-        android:icon="@drawable/outline_favorite_24"
+        android:icon="@drawable/favorite_icon_outlined"
         android:title="Favourites" />
     <item
         android:id="@+id/orders"

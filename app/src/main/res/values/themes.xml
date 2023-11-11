@@ -33,4 +33,9 @@
         <item name="android:background">@color/grey_200</item>
         <item name="android:textColor">@color/green_700</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- ... -->
+        <item name="borderlessSelectableItemBackground">@drawable/rounded_corner</item>
+    </style>
 </resources>

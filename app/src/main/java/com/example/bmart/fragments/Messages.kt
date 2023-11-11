@@ -1,33 +1,25 @@
 package com.example.bmart.fragments
 
+import ItemListener
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.bmart.MessageAdapter
+import com.example.bmart.Messages
 import com.example.bmart.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Messages.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Messages : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class Messages : Fragment(), ItemListener{
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var messagesArrayList: ArrayList<Messages>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -38,23 +30,69 @@ class Messages : Fragment() {
         return inflater.inflate(R.layout.fragment_messages, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Messages.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Messages().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        dataInitialize()
+
+        recyclerView = view.findViewById(R.id.messages_list)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.setHasFixedSize(true)
+        val messageAdapter = MessageAdapter(requireContext(), messagesArrayList, this)
+        recyclerView.adapter = messageAdapter
+        messageAdapter.notifyDataSetChanged()
+
+    }
+
+    private fun dataInitialize() {
+        messagesArrayList = arrayListOf<Messages>()
+
+        val profilePicture = intArrayOf(
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2,
+            R.drawable.man2
+        )
+
+        val name = arrayOf(
+            "Name A",
+            "Name B",
+            "Name C",
+            "Name D",
+            "Name E",
+            "Name F",
+            "Name G",
+            "Name H",
+            "Name I",
+            "Name J",
+        )
+
+        val recentText = arrayOf(
+            "Recent Text A",
+            "Recent Text B",
+            "Recent Text C",
+            "Recent Text D",
+            "Recent Text E",
+            "Recent Text F",
+            "Recent Text G",
+            "Recent Text H",
+            "Recent Text I",
+            "Recent Text J",
+        )
+
+        for (i in name.indices) {
+            val messages = Messages(profilePicture[i], name[i], recentText[i])
+            messagesArrayList.add(messages)
+        }
+    }
+
+    override fun onClicked(name: String) {
+        Toast.makeText(requireContext(), "Name is $name", Toast.LENGTH_SHORT).show()
     }
 }

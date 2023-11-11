@@ -11,7 +11,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.MyAdapter
+import com.example.bmart.VendorAdapter
 import com.example.bmart.Vendors
 import com.example.bmart.R
 
@@ -61,9 +61,9 @@ class Home : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        val myAdapter = MyAdapter(requireContext(), vendorsArrayList)
-        recyclerView.adapter = myAdapter
-        myAdapter.notifyDataSetChanged()
+        val vendorAdapter = VendorAdapter(requireContext(), vendorsArrayList)
+        recyclerView.adapter = vendorAdapter
+        vendorAdapter.notifyDataSetChanged()
 
         val spinner = view.findViewById<Spinner>(R.id.spinnerCategory)
         val categories = arrayOf("Category 1", "Category 2", "Category 3", "Category 4")

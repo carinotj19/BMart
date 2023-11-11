@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Cart">
+    tools:context=".fragments.Cart"
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:id="@+id/message_header"
-        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="108dp"
-            android:layout_toRightOf="@id/back_button"
             android:fontFamily="@font/poppins_regular"
             android:text="Cart"
             android:textColor="@color/primary"
             android:textSize="32dp"
             android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/back_icon"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_centerVertical="true"
-            app:tint="@color/green_700" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/back_button"-->
+<!--            android:layout_width="48dp"-->
+<!--            android:layout_height="48dp"-->
+<!--            android:src="@drawable/back_icon"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            app:tint="@color/green_700" />-->
 
     </RelativeLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_items"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_below="@id/message_header"
         android:layout_above="@id/cart_checkout"
         tools:listitem="">
@@ -52,8 +52,7 @@
         android:orientation="vertical"
         android:id="@+id/cart_checkout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/cart_checkout_header"
@@ -115,4 +114,5 @@
         </LinearLayout>
 
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>

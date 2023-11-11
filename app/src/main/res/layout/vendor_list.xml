@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -28,6 +29,7 @@
                     android:src="@drawable/a" />
 
                 <ImageButton
+                    android:id="@+id/hearticon"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentTop="true"
@@ -37,7 +39,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/baseline_favorite_24"
+                    android:src="@drawable/favorite_icon_outlined"
                     app:tint="@color/red" />
 
             </RelativeLayout>
@@ -52,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vendor Name"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:fontFamily="@font/poppins_semibold"
                     android:layout_marginStart="20dp"
                     android:textAlignment="center"
@@ -65,13 +67,14 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:text="4.8"
-                    android:textSize="15dp"
-                    android:drawableStart="@drawable/rating_24"
-                    android:drawableTint="@color/yellow"
+                    android:textSize="15sp"
                     android:fontFamily="@font/poppins_semibold"
                     android:textAlignment="center"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    tools:ignore="HardcodedText"
+                    app:drawableStartCompat="@drawable/rating_icon"
+                    app:drawableTint="@color/yellow" />
 
             </RelativeLayout>
 
@@ -80,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="10dp"

@@ -13,31 +13,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/toolbar"
-            android:elevation="4dp"
-            android:background="@color/white"
-            app:theme="@style/ToolbarColoredBackArrow"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:layoutDirection="rtl"
-            app:navigationIcon="@drawable/baseline_menu_24"
-            app:title="Welcome"
-            app:titleTextColor="@color/green_700"
-            app:titleMarginStart="250dp" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/frameLayout"
-            android:layoutDirection="ltr"/>
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layoutDirection="ltr">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:layoutDirection="rtl"
+            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/baseline_menu_24"
+            app:theme="@style/ToolbarColoredBackArrow"
+            app:title="Welcome"
+            app:titleMarginStart="250dp"
+            app:titleTextColor="@color/green_700" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_below="@id/bottomNavigationView"
+            android:layoutDirection="ltr"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_height="0dp"/>
 
         <!-- Bottom Navigation Bar -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -46,8 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/bottom_navbar" />
+            app:menu="@menu/bottom_navbar"
+            android:layoutDirection="ltr"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
