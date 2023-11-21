@@ -110,8 +110,6 @@
 
         </FrameLayout>
 
-        <!--- NAV BAR BELOW vendor_items -->
-
     </LinearLayout>
 
 </RelativeLayout>

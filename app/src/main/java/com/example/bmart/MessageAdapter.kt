@@ -1,6 +1,5 @@
 package com.example.bmart
 
-import ItemListener
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,13 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-interface MessageClickListener {
-    fun onMessageClick(position: Int)
-}
-class MessageAdapter(var context: Context, private var messagesArrayList: ArrayList<Messages>, val listener : ItemListener) :
-    RecyclerView.Adapter<MessageAdapter.MyViewHolder?>() {
+class MessageAdapter(
+    private var messagesArrayList: ArrayList<Messages>,
+    private val listener: onItemClickListener
+    ) : RecyclerView.Adapter<MessageAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(context).inflate(R.layout.messages_layout, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.messages_layout, parent, false)
         return MyViewHolder(v)
     }
 
@@ -24,25 +22,32 @@ class MessageAdapter(var context: Context, private var messagesArrayList: ArrayL
         holder.profilePicture.setImageResource(messages.profilePicture)
         holder.name.text = messages.name
         holder.recentText.text = messages.recentText
-        holder.bindData(messagesArrayList.get(position), listener)
     }
 
     override fun getItemCount(): Int {
         return messagesArrayList.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var profilePicture = itemView.findViewById<ImageView>(R.id.profile_picture)
-        var name = itemView.findViewById<TextView>(R.id.name)
-        var recentText = itemView.findViewById<TextView>(R.id.recent_text)
-        fun bindData(itemName: Messages, listener: ItemListener) {
-            name?.text = itemName.name
-            name?.setOnClickListener {
-                listener.onClicked(itemName.name)
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    View.OnClickListener {
+        var profilePicture: ImageView = itemView.findViewById<ImageView>(R.id.profile_picture)
+        var name: TextView = itemView.findViewById<TextView>(R.id.name)
+        var recentText: TextView = itemView.findViewById<TextView>(R.id.recent_text)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
             }
         }
-        init {
-
-        }
     }
+
+    interface onItemClickListener{
+        fun onItemClick(position: Int)
+    }
+
 }
