@@ -8,13 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.MessageAdapter
-import com.example.bmart.Messages
+import com.example.bmart.Adapters.MessageAdapter
+import com.example.bmart.Models.MessageModel
 import com.example.bmart.R
 
-class Messages : Fragment(), MessageAdapter.onItemClickListener {
+class Messages : Fragment(), MessageAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var messagesArrayList: ArrayList<Messages>
+    private lateinit var messagesArrayList: ArrayList<MessageModel>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +44,7 @@ class Messages : Fragment(), MessageAdapter.onItemClickListener {
     }
 
     private fun dataInitialize() {
-        messagesArrayList = arrayListOf<Messages>()
+        messagesArrayList = arrayListOf<MessageModel>()
 
         val profilePicture = intArrayOf(
             R.drawable.man2,
@@ -86,7 +86,7 @@ class Messages : Fragment(), MessageAdapter.onItemClickListener {
         )
 
         for (i in name.indices) {
-            val messages = Messages(profilePicture[i], name[i], recentText[i])
+            val messages = MessageModel(profilePicture[i], name[i], recentText[i])
             messagesArrayList.add(messages)
         }
     }

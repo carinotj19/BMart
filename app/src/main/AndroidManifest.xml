@@ -13,6 +13,12 @@
         android:theme="@style/Theme.BMart"
         tools:targetApi="31">
         <activity
+            android:name=".ItemDetails"
+            android:exported="false" />
+        <activity
+            android:name=".VendorDetails"
+            android:exported="false" />
+        <activity
             android:name=".Checkout"
             android:exported="false" />
         <activity

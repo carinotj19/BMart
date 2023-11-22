@@ -1,6 +1,5 @@
-package com.example.bmart
+package com.example.bmart.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,44 +8,54 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bmart.R
+import com.example.bmart.Models.VendorModel
 
-class VendorAdapter(var context: Context, private var vendorsArrayList: ArrayList<Vendors>) :
+class VendorAdapter(
+    private var vendorModelArrayList: ArrayList<VendorModel>,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<VendorAdapter.MyViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val v = LayoutInflater.from(context).inflate(R.layout.vendor_list, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.vendor_list, parent, false)
         return MyViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val vendors = vendorsArrayList[position]
+        val vendors = vendorModelArrayList[position]
         holder.vendorsName.text = vendors.vendorsName
         holder.vendorsImage.setImageResource(vendors.vendorsImage)
+        holder.vendorsRating.text = vendors.vendorsRating.toString()
+        holder.vendorLocation.text = vendors.vendorsLocation
     }
 
     override fun getItemCount(): Int {
-        return vendorsArrayList.size
+        return vendorModelArrayList.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var vendorsImage: ImageView
-        var vendorsName: TextView
-        var vendorsRating: TextView
-        var vendorLocation: TextView
-        var heartIcon: ImageButton
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var vendorsImage: ImageView = itemView.findViewById(R.id.vendor_image)
+        var vendorsName: TextView = itemView.findViewById(R.id.vendor_name)
+        var vendorsRating: TextView = itemView.findViewById(R.id.vendor_rate)
+        var vendorLocation: TextView = itemView.findViewById(R.id.vendor_loc)
+        private var heartIcon: ImageButton = itemView.findViewById(R.id.hearticon)
         private var isHeartFilled: Boolean = false
 
         init {
-            vendorsImage = itemView.findViewById(R.id.vendor_image)
-            vendorsName = itemView.findViewById(R.id.vendor_name)
-            vendorsRating = itemView.findViewById(R.id.vendor_rate)
-            vendorLocation = itemView.findViewById(R.id.vendor_loc)
-            heartIcon = itemView.findViewById(R.id.hearticon)
-
+            itemView.setOnClickListener(this)
             heartIcon.setOnClickListener {
                 isHeartFilled = !isHeartFilled
                 updateHeartIcon()
             }
         }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
+            }
+        }
+
 
         private fun updateHeartIcon() {
             if (isHeartFilled) {
@@ -59,5 +68,9 @@ class VendorAdapter(var context: Context, private var vendorsArrayList: ArrayLis
                 heartIcon.setColorFilter(ContextCompat.getColor(itemView.context, R.color.red))
             }
         }
+
+    }
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
     }
 }

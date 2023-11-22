@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -157,6 +156,12 @@ class Dashboard : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
             if (receivedData == "cart"){
                 replaceFragment(Cart())
+            }
+            if (receivedData == "home"){
+                replaceFragment(Home())
+            }
+            if (receivedData == "Messages"){
+                replaceFragment(Messages())
             }
         }
     }

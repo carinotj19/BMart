@@ -11,14 +11,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.CartAdapter
-import com.example.bmart.CartItems
+import com.example.bmart.Adapters.CartAdapter
+import com.example.bmart.Models.CartItemModel
 import com.example.bmart.R
 import com.example.bmart.Checkout
 
 class Cart : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var cartsArrayList: ArrayList<CartItems>
+    private lateinit var cartsArrayList: ArrayList<CartItemModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +72,7 @@ class Cart : Fragment() {
     }
 
     private fun dataInitialize() {
-        cartsArrayList = arrayListOf<CartItems>()
+        cartsArrayList = arrayListOf<CartItemModel>()
 
         val itemsImage = intArrayOf(
             R.drawable.item,
@@ -118,7 +118,7 @@ class Cart : Fragment() {
         val formattedItemPrice = itemPrice.map { "₱$it" }.toTypedArray()
 
         for (i in itemsName.indices) {
-            val carts = CartItems(itemsImage[i], itemsName[i], vendorsName[i], formattedItemPrice[i])
+            val carts = CartItemModel(itemsImage[i], itemsName[i], vendorsName[i], formattedItemPrice[i])
             cartsArrayList.add(carts)
         }
     }

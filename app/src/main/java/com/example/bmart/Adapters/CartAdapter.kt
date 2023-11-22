@@ -1,4 +1,4 @@
-package com.example.bmart
+package com.example.bmart.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,9 +9,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bmart.Models.CartItemModel
+import com.example.bmart.R
 import com.example.bmart.fragments.Cart
 
-class CartAdapter(var context: Context, private var cartArrayList: ArrayList<CartItems>, private var cartFragment: Cart) :
+class CartAdapter(var context: Context, private var cartArrayList: ArrayList<CartItemModel>, private var cartFragment: Cart) :
     RecyclerView.Adapter<CartAdapter.MyViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.cart_items_layout, parent, false)
@@ -54,7 +56,7 @@ class CartAdapter(var context: Context, private var cartArrayList: ArrayList<Car
         return cartArrayList.size
     }
 
-    private fun updateItemPrice(holder: MyViewHolder, carts: CartItems) {
+    private fun updateItemPrice(holder: MyViewHolder, carts: CartItemModel) {
         val priceString = carts.itemPrice.replace("₱", "")
         val price = priceString.toDouble()
         val quantity = carts.quantity
@@ -90,11 +92,15 @@ class CartAdapter(var context: Context, private var cartArrayList: ArrayList<Car
             if (isSelectFilled) {
                 // Set the select icon to filled state
                 selectIcon.setImageResource(R.drawable.select_icon_filled)
-                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context, R.color.green_700))
+                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context,
+                    R.color.green_700
+                ))
             } else {
                 // Set the select icon to outlined state
                 selectIcon.setImageResource(R.drawable.select_icon_outline)
-                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context, R.color.green_700))
+                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context,
+                    R.color.green_700
+                ))
             }
         }
     }

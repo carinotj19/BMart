@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,9 +19,12 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:scaleType="centerCrop"
+                    android:id="@+id/vendor_profile"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
-                    android:src="@drawable/person3"/>
+                    android:src="@drawable/person3"
+                    android:contentDescription="TODO" />
 
                 <ImageButton
                     android:layout_marginTop="20dp"
@@ -29,17 +33,20 @@
                     android:layout_height="48dp"
                     android:src="@drawable/back_icon"
                     app:tint="@color/primary"
-                    android:background="?attr/selectableItemBackgroundBorderless"/>
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="TODO" />
 
                 <ImageButton
-                    android:layout_marginRight="20dp"
+                    android:id="@+id/heart_icon"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/favorite_icon_outlined"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_alignParentEnd="true"
-                    app:tint="@color/red" />
+                    app:tint="@color/red"
+                    android:contentDescription="TODO" />
 
             </RelativeLayout>
 
@@ -51,27 +58,29 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/vendor_name"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Aqua's Stall"
                 android:fontFamily="@font/poppins_semibold"
-                android:textSize="24dp"/>
+                android:textSize="24sp"/>
 
             <TextView
+                android:id="@+id/vendor_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="30dp"
-                android:drawableStart="@drawable/rating_icon"
+                android:layout_marginEnd="30dp"
                 android:drawablePadding="5dp"
-                android:drawableTint="@color/yellow"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="0.5"
                 android:textAlignment="center"
-                android:textSize="18dp" />
+                android:textSize="18sp"
+                app:drawableStartCompat="@drawable/rating_icon"
+                app:drawableTint="@color/yellow" />
 
         </RelativeLayout>
 
@@ -85,30 +94,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Opens at Mon, 10:00 am"
-                android:drawableStart="@drawable/time"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:drawablePadding="5dp"
-                android:drawableTint="@color/primary"/>
+                app:drawableTint="@color/primary"
+                app:drawableStartCompat="@drawable/time" />
 
             <ImageButton
-                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/info"
                 android:layout_alignParentEnd="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:tint="@color/primary" />
+                app:tint="@color/primary"
+                android:contentDescription="TODO" />
 
         </RelativeLayout>
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include layout="@layout/item_list"></include>
-
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            tools:listitem="" />
 
     </LinearLayout>
 
