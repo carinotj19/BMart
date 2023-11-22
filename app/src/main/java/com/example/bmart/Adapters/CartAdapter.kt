@@ -1,5 +1,6 @@
 package com.example.bmart.Adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.Models.CartItemModel
 import com.example.bmart.R
 import com.example.bmart.fragments.Cart
 
-class CartAdapter(var context: Context, private var cartArrayList: ArrayList<CartItemModel>, private var cartFragment: Cart) :
+class CartAdapter(var context: Context, private var cartArrayList: List<CartItemModel>, private var cartFragment: Cart) :
     RecyclerView.Adapter<CartAdapter.MyViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.cart_items_layout, parent, false)
@@ -62,6 +65,11 @@ class CartAdapter(var context: Context, private var cartArrayList: ArrayList<Car
         val quantity = carts.quantity
         val total = price * quantity
         holder.itemPrice.text = "₱${String.format("%.2f", total)}"
+
+        if (quantity == 0) {
+            cartFragment.removeFromCart(carts)
+            Toast.makeText(context, "Item Deleted from Cart", Toast.LENGTH_SHORT).show()
+        }
         // Call the updateTotal function in the Cart fragment
         cartFragment.updateTotal()
     }
@@ -85,6 +93,14 @@ class CartAdapter(var context: Context, private var cartArrayList: ArrayList<Car
             selectIcon.setOnClickListener {
                 isSelectFilled = !isSelectFilled
                 updateSelectIcon()
+
+                val cardView = itemView.findViewById<CardView>(R.id.card_view)
+                val backgroundColor = if (isSelectFilled) {
+                    ContextCompat.getColor(itemView.context, R.color.grey_200) // Use the grey tone color
+                } else {
+                    ContextCompat.getColor(itemView.context, android.R.color.white) // Use the default color
+                }
+                cardView.setCardBackgroundColor(backgroundColor)
             }
         }
 

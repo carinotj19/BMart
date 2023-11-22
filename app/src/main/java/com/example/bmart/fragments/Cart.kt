@@ -9,16 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.Adapters.CartAdapter
 import com.example.bmart.Models.CartItemModel
 import com.example.bmart.R
 import com.example.bmart.Checkout
+import com.example.bmart.SharedPreferencesHelper
 
 class Cart : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var cartsArrayList: ArrayList<CartItemModel>
+    private val cartsArrayList = mutableListOf<CartItemModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +42,13 @@ class Cart : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        dataInitialize()
+        loadCartItems()
 
         recyclerView = view.findViewById(R.id.cart_items)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
         val cartAdapter = CartAdapter(requireContext(), cartsArrayList, this)
         recyclerView.adapter = cartAdapter
-        cartAdapter.notifyDataSetChanged()
 
         updateTotal()
         val checkoutButton = view.findViewById<Button>(R.id.cart_checkout_btn)
@@ -56,11 +56,26 @@ class Cart : Fragment() {
             val intent = Intent(activity, Checkout::class.java)
             startActivity(intent)
         }
-    }
 
+        val addDummyDataButton = view.findViewById<Button>(R.id.add_dummy_data)
+        addDummyDataButton.setOnClickListener {
+            addDummyData()
+        }
+    }
+    private fun addDummyData() {
+        val itemsImage = R.drawable.item
+        val itemName = "Dummy Item"
+        val vendorName = "Dummy Vendor"
+        val itemPrice = 25.0
+
+        val formattedItemPrice = "₱${String.format("%.2f", itemPrice)}"
+
+        val dummyCartItem = CartItemModel(itemsImage, itemName, vendorName, formattedItemPrice)
+        addToCart(dummyCartItem)
+        Toast.makeText(context, "Dummy data added to cart", Toast.LENGTH_SHORT).show()
+    }
     fun updateTotal() {
         val totalTextView: TextView = view?.findViewById(R.id.cart_items_total) ?: return
-        Log.d("CartFragment", "updateTotal() called")
         var totalPrice = 0.0
         for (item in cartsArrayList) {
             val priceString = item.itemPrice.replace("₱", "")
@@ -70,56 +85,38 @@ class Cart : Fragment() {
 
         totalTextView.text = "₱${String.format("%.2f", totalPrice)}"
     }
+    private fun loadCartItems() {
+        cartsArrayList.clear()
+        cartsArrayList.addAll(SharedPreferencesHelper.loadCartItems(requireContext()))
 
-    private fun dataInitialize() {
-        cartsArrayList = arrayListOf<CartItemModel>()
+        val nothingInCartLayout = view?.findViewById<ViewGroup>(R.id.nothing_in_cart_layout)
+        val recyclerView = view?.findViewById<RecyclerView>(R.id.cart_items)
 
-        val itemsImage = intArrayOf(
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item
-        )
-
-        val itemsName = arrayOf(
-            "Item A",
-            "Item B",
-            "Item C",
-            "Item D",
-            "Item E",
-            "Item F",
-            "Item G",
-            "Item H",
-            "Item I",
-            "Item J",
-        )
-
-        val vendorsName = arrayOf(
-            getString(R.string.vendors_a),
-            getString(R.string.vendors_b),
-            getString(R.string.vendors_c),
-            getString(R.string.vendors_d),
-            getString(R.string.vendors_e),
-            getString(R.string.vendors_f),
-            getString(R.string.vendors_g),
-            getString(R.string.vendors_h),
-            getString(R.string.vendors_i),
-            getString(R.string.vendors_j),
-        )
-
-        val itemPrice = floatArrayOf(20.00f, 30.00f, 30.80f, 40.00f, 30.70f, 40.10f, 30.90f, 40.30f, 40.40f, 30.60f)
-
-        val formattedItemPrice = itemPrice.map { "₱$it" }.toTypedArray()
-
-        for (i in itemsName.indices) {
-            val carts = CartItemModel(itemsImage[i], itemsName[i], vendorsName[i], formattedItemPrice[i])
-            cartsArrayList.add(carts)
+        if (cartsArrayList.isEmpty()) {
+            nothingInCartLayout?.visibility = View.VISIBLE
+            recyclerView?.visibility = View.GONE
+        } else {
+            nothingInCartLayout?.visibility = View.GONE
+            recyclerView?.visibility = View.VISIBLE
         }
+    }
+    private fun saveCartItems() {
+        SharedPreferencesHelper.saveCartItems(requireContext(), cartsArrayList)
+    }
+    private fun addToCart(carts: CartItemModel) {
+        cartsArrayList.add(carts)
+        updateTotal()
+        saveCartItems()
+        loadCartItems()
+        Toast.makeText(context, "Cart Updated", Toast.LENGTH_SHORT).show()
+    }
+    fun removeFromCart(carts: CartItemModel) {
+        cartsArrayList.remove(carts)
+        updateTotal()
+        saveCartItems() // Save cart items after removing
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        saveCartItems()
     }
 }

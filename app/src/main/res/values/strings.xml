@@ -37,6 +37,21 @@
     <string name="location_h">Berlin</string>
     <string name="location_i">Singapore</string>
     <string name="location_j">Dubai</string>
+    <string name="cart">Cart</string>
+    <string name="add_item">Add Item</string>
+    <string name="nothing_in_cart">Nothing in cart</string>
+    <string name="total">Total</string>
+    <string name="incl_vat">(Incl. VAT)</string>
+    <string name="money">$69</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="item_image">ITEM_IMAGE</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_select">ITEM_SELECT</string>
+    <string name="vendor_name">Vendor Name</string>
+    <string name="twenty_dollars">$20.00</string>
+    <string name="left_arrow">LEFT_ARROW</string>
+    <string name="_1">1</string>
+    <string name="right_arrow">RIGHT_ARROW</string>
 
 
 </resources>

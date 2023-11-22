@@ -12,11 +12,9 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val textView: TextView = findViewById<TextView>(R.id.sign_up)
-        textView.setOnClickListener(View.OnClickListener {
-
+        textView.setOnClickListener {
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
-
-        })
+        }
     }
 }

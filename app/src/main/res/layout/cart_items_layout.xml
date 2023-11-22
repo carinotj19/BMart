@@ -4,9 +4,11 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    android:elevation="5dp">
+    android:elevation="5dp"
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp">
@@ -20,7 +22,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/strawberry"/>
+                android:src="@drawable/strawberry"
+                android:contentDescription="@string/item_image" />
 
             <LinearLayout
                 android:layout_gravity="center"
@@ -39,8 +42,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Item Name"
-                        android:textSize="20dp" />
+                        android:text="@string/item_name"
+                        android:textSize="20sp" />
 
                     <ImageButton
                         android:id="@+id/item_select"
@@ -50,7 +53,7 @@
                         android:src="@drawable/select_icon_outline"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         app:tint="@color/primary"
-                        />
+                        android:contentDescription="@string/item_select" />
 
                 </RelativeLayout>
 
@@ -58,9 +61,9 @@
                     android:id="@+id/item_origin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vendor Name"
+                    android:text="@string/vendor_name"
                     android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"/>
+                    android:textSize="14sp"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -71,9 +74,9 @@
                         android:id="@+id/item_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$20.00"
+                        android:text="@string/twenty_dollars"
                         android:fontFamily="@font/poppins_semibold"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <ImageButton
                         android:id="@+id/minus"
@@ -82,19 +85,20 @@
                         android:src="@drawable/minus"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:fontFamily="@font/poppins_semibold"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:layout_toEndOf="@+id/item_price"
                         android:layout_marginStart="150dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/left_arrow" />
 
                     <TextView
                         android:id="@+id/item_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1"
+                        android:text="@string/_1"
                         android:fontFamily="@font/poppins_semibold"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:layout_toEndOf="@+id/minus"
                         android:layout_centerVertical="true" />
 
@@ -105,10 +109,11 @@
                         android:src="@drawable/add"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:fontFamily="@font/poppins_semibold"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:layout_toEndOf="@+id/item_quantity"
                         android:layout_marginStart="10dp"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/right_arrow" />
 
                 </RelativeLayout>
 
