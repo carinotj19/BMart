@@ -1,5 +1,7 @@
 package com.example.bmart.Adapters
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.R
 import com.example.bmart.Models.VendorModel
+import com.facebook.shimmer.ShimmerFrameLayout
 
 class VendorAdapter(
     private var vendorModelArrayList: ArrayList<VendorModel>,

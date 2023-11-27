@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Payment Methods"
-        android:textSize="21dp"
+        android:textSize="21sp"
         android:fontFamily="@font/poppins_bold"/>
 
     <androidx.cardview.widget.CardView
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cash"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/poppins_semibold"/>
 
         </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="GCash"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:fontFamily="@font/poppins_semibold"/>
 
         </LinearLayout>

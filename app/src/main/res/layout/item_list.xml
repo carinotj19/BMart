@@ -9,7 +9,7 @@
             android:layout_margin="10dp"
             android:id="@+id/item_container"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -23,13 +23,13 @@
                     <ImageView
                         android:id="@+id/item_image"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:src="@drawable/strawberry"
+                        android:layout_height="115dp"
+                        android:src="@drawable/item"
                         android:scaleType="fitCenter"/>
 
                     <ImageButton
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -41,14 +41,16 @@
                 <TextView
                     android:id="@+id/item_name"
                     android:layout_gravity="center"
-                    android:layout_width="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Strawberry"
                     android:fontFamily="@font/montserrat_medium"
                     android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/vendor_name"
-                    android:layout_width="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Vendor 1"
                     android:fontFamily="@font/poppins_light"

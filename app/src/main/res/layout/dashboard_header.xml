@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/username"
         android:paddingTop="8dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text="Rayshine Pogi"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -27,13 +27,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="rayshingpogi@gmail.com" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="+696969696969" />
 
     <View

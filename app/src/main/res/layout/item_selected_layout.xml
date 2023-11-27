@@ -25,7 +25,7 @@
             android:layout_width="300dp"
             android:layout_height="250dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/strawberry"/>
+            android:src="@drawable/item"/>
 
         <LinearLayout
             android:layout_gravity="center_horizontal"
@@ -39,7 +39,7 @@
                 android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/add"
+                android:src="@drawable/minus"
                 android:layout_toLeftOf="@id/item_quantity"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitCenter"
@@ -52,7 +52,7 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
                 android:text="1"
-                android:textSize="40dp"/>
+                android:textSize="40sp"/>
 
             <ImageButton
                 android:layout_marginBottom="4dp"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:text="Strawberry"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="35dp"/>
+                android:textSize="35sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
                 android:layout_marginRight="14dp"
                 android:fontFamily="@font/poppins_light"
                 android:text="200 sold"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="per kilo"
                 android:fontFamily="@font/poppins_regular"
-                android:textSize="24dp"/>
+                android:textSize="24sp"/>
 
         </RelativeLayout>
 
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:fontFamily="@font/poppins_regular"/>
 
         <RelativeLayout
@@ -138,7 +138,7 @@
                 android:fontFamily="@font/poppins_bold"
                 android:text="$20.00"
                 android:textAlignment="center"
-                android:textSize="30dp" />
+                android:textSize="30sp" />
 
             <Button
                 android:id="@+id/add_order"
@@ -152,7 +152,7 @@
                 android:background="@drawable/rounded_button"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Add Order"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
         </RelativeLayout>
     </LinearLayout>

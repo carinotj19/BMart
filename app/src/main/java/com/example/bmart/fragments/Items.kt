@@ -18,6 +18,7 @@ import com.example.bmart.Adapters.ItemAdapter
 import com.example.bmart.ItemDetails
 import com.example.bmart.Models.ItemModel
 import com.example.bmart.R
+import io.github.serpro69.kfaker.faker
 
 class Items : Fragment(), ItemAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -70,51 +71,16 @@ class Items : Fragment(), ItemAdapter.OnItemClickListener {
     }
     private fun dataInitialize() {
         itemModelArrayList = arrayListOf()
+        val faker = faker {  }
 
-        val vendorsName = arrayOf(
-            getString(R.string.vendors_a),
-            getString(R.string.vendors_b),
-            getString(R.string.vendors_c),
-            getString(R.string.vendors_d),
-            getString(R.string.vendors_e),
-            getString(R.string.vendors_f),
-            getString(R.string.vendors_g),
-            getString(R.string.vendors_h),
-            getString(R.string.vendors_i),
-            getString(R.string.vendors_j),
-        )
+        for (i in 0 until 20) {
+            val vendorName = faker.name.name()
+            val itemName = faker.food.vegetables()
 
-        val itemsName = arrayOf(
-            "Item A",
-            "Item B",
-            "Item C",
-            "Item D",
-            "Item E",
-            "Item F",
-            "Item G",
-            "Item H",
-            "Item I",
-            "Item J",
-        )
-
-        val itemsImage = intArrayOf(
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item,
-            R.drawable.item
-        )
-
-        for (i in itemsName.indices) {
             val itemModel = ItemModel(
-                vendorsName[i],
-                itemsName[i],
-                itemsImage[i],
+                vendorName,
+                itemName,
+                R.drawable.item
             )
             itemModelArrayList.add(itemModel)
         }

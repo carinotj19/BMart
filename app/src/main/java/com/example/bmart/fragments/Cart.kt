@@ -108,12 +108,18 @@ class Cart : Fragment() {
         updateTotal()
         saveCartItems()
         loadCartItems()
+        recyclerView.adapter?.notifyItemInserted(cartsArrayList.size - 1)
         Toast.makeText(context, "Cart Updated", Toast.LENGTH_SHORT).show()
     }
     fun removeFromCart(carts: CartItemModel) {
         cartsArrayList.remove(carts)
-        updateTotal()
-        saveCartItems() // Save cart items after removing
+        // Only update the adapter when quantity is 0
+        if (carts.quantity == 0) {
+            updateTotal()
+            saveCartItems()
+            loadCartItems()
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

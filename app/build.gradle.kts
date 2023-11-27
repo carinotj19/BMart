@@ -41,12 +41,12 @@ android {
 }
 
 dependencies {
-
+    implementation("io.github.serpro69:kotlin-faker:1.15.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
-    implementation ("com.google.code.gson:gson:2.8.7")
+    implementation ("com.google.code.gson:gson:2.8.9")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")

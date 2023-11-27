@@ -1,10 +1,10 @@
 package com.example.bmart.fragments
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +12,19 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.Adapters.VendorAdapter
+import com.example.bmart.Models.VendorModel
 import com.example.bmart.R
 import com.example.bmart.VendorDetails
-import com.example.bmart.Models.VendorModel
+import com.facebook.shimmer.ShimmerFrameLayout
+import io.github.serpro69.kfaker.faker
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import kotlin.random.Random
+
 
 class Vendors : Fragment(), VendorAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -72,54 +79,20 @@ class Vendors : Fragment(), VendorAdapter.OnItemClickListener {
     }
     private fun dataInitialize() {
         vendorModelArrayList = arrayListOf()
+        val faker = faker {  }
 
-        val vendorsName = arrayOf(
-            getString(R.string.vendors_a),
-            getString(R.string.vendors_b),
-            getString(R.string.vendors_c),
-            getString(R.string.vendors_d),
-            getString(R.string.vendors_e),
-            getString(R.string.vendors_f),
-            getString(R.string.vendors_g),
-            getString(R.string.vendors_h),
-            getString(R.string.vendors_i),
-            getString(R.string.vendors_j),
-        )
+        for (i in 0 until 20) {
+            val vendorName = faker.name.name()
+            val vendorRating = Random.nextFloat() * (5.0 - 1.0) + 1.0
+            val df = DecimalFormat("#.#")
+            df.roundingMode = RoundingMode.CEILING
+            val vendorLocation = faker.address.country()
 
-        val vendorsRating = floatArrayOf(4.5f, 4.2f, 3.8f, 4.0f, 3.7f, 4.1f, 3.9f, 4.3f, 4.4f, 3.6f)
-
-        val vendorsLocation = arrayOf(
-            getString(R.string.location_a),
-            getString(R.string.location_b),
-            getString(R.string.location_c),
-            getString(R.string.location_d),
-            getString(R.string.location_e),
-            getString(R.string.location_f),
-            getString(R.string.location_g),
-            getString(R.string.location_h),
-            getString(R.string.location_i),
-            getString(R.string.location_j),
-        )
-
-        val vendorsImage = intArrayOf(
-            R.drawable.a,
-            R.drawable.b,
-            R.drawable.c,
-            R.drawable.d,
-            R.drawable.e,
-            R.drawable.f,
-            R.drawable.g,
-            R.drawable.h,
-            R.drawable.i,
-            R.drawable.j
-        )
-
-        for (i in vendorsName.indices) {
             val vendorModel = VendorModel(
-                vendorsName[i],
-                vendorsImage[i],
-                vendorsRating[i],
-                vendorsLocation[i]
+                vendorName,
+                R.drawable.a,
+                df.format(vendorRating).toFloat(),
+                vendorLocation,
             )
             vendorModelArrayList.add(vendorModel)
         }

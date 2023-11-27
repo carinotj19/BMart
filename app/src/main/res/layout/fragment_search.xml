@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Recent Searches"
-                android:textSize="21dp"
+                android:textSize="21sp"
                 android:fontFamily="@font/poppins_bold"
                 android:layout_marginTop="16dp"/>
 

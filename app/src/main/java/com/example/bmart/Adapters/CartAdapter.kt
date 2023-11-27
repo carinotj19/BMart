@@ -66,12 +66,12 @@ class CartAdapter(var context: Context, private var cartArrayList: List<CartItem
         val total = price * quantity
         holder.itemPrice.text = "₱${String.format("%.2f", total)}"
 
+        // Call the updateTotal function in the Cart fragment
+        cartFragment.updateTotal()
         if (quantity == 0) {
             cartFragment.removeFromCart(carts)
             Toast.makeText(context, "Item Deleted from Cart", Toast.LENGTH_SHORT).show()
         }
-        // Call the updateTotal function in the Cart fragment
-        cartFragment.updateTotal()
     }
 
 
