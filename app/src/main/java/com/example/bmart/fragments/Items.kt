@@ -2,7 +2,6 @@ package com.example.bmart.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.Adapters.ItemAdapter
-import com.example.bmart.ItemDetails
-import com.example.bmart.Models.ItemModel
+import com.example.bmart.adapters.ItemAdapter
+import com.example.bmart.activities.ItemDetails
+import com.example.bmart.models.ItemModel
 import com.example.bmart.R
 import io.github.serpro69.kfaker.faker
 

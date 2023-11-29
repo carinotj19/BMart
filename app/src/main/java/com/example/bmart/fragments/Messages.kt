@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.Adapters.MessageAdapter
-import com.example.bmart.Models.MessageModel
+import com.example.bmart.adapters.MessageAdapter
+import com.example.bmart.models.MessageModel
 import com.example.bmart.R
 
 class Messages : Fragment(), MessageAdapter.OnItemClickListener {
@@ -47,16 +47,16 @@ class Messages : Fragment(), MessageAdapter.OnItemClickListener {
         messagesArrayList = arrayListOf<MessageModel>()
 
         val profilePicture = intArrayOf(
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2,
-            R.drawable.man2
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder,
+            R.drawable.img_placeholder
         )
 
         val name = arrayOf(

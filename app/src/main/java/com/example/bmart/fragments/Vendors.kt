@@ -2,8 +2,6 @@ package com.example.bmart.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +13,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.Adapters.VendorAdapter
-import com.example.bmart.Models.VendorModel
+import com.example.bmart.adapters.VendorAdapter
+import com.example.bmart.models.VendorModel
 import com.example.bmart.R
-import com.example.bmart.VendorDetails
-import com.facebook.shimmer.ShimmerFrameLayout
+import com.example.bmart.activities.VendorDetails
 import io.github.serpro69.kfaker.faker
 import java.math.RoundingMode
 import java.text.DecimalFormat

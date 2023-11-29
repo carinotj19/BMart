@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "467980209950",
+    "project_id": "bmart-179b3",
+    "storage_bucket": "bmart-179b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467980209950:android:a19632052f5ce958f9430f",
+        "android_client_info": {
+          "package_name": "com.example.bmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHROsUypwW3E9ZP3sa0auwhSZfiWdgklo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

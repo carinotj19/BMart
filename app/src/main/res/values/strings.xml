@@ -52,6 +52,16 @@
     <string name="left_arrow">LEFT_ARROW</string>
     <string name="_1">1</string>
     <string name="right_arrow">RIGHT_ARROW</string>
+    <string name="profile">Profile</string>
+    <string name="favourites">Favourites</string>
+    <string name="orders">Orders</string>
+    <string name="help_center">Help Center</string>
+    <string name="privacy_and_policy">Privacy and Policy</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="log_out">Log Out</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="vendor_profile">VENDOR_PROFILE</string>
 
 
 </resources>

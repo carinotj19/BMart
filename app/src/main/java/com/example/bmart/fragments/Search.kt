@@ -1,25 +1,21 @@
 package com.example.bmart.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bmart.Adapters.SearchAdapter
-import com.example.bmart.Dashboard
-import com.example.bmart.Models.SearchModel
+import com.example.bmart.adapters.SearchAdapter
+import com.example.bmart.models.SearchModel
 import com.example.bmart.R
-import com.example.bmart.SharedPreferencesHelper
+import com.example.bmart.helpers.SharedPreferencesHelper
 
 class Search : Fragment() {
 
