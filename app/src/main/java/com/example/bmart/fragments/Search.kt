@@ -17,39 +17,42 @@ import com.example.bmart.models.SearchModel
 import com.example.bmart.R
 import com.example.bmart.helpers.SharedPreferencesHelper
 
-class Search : Fragment() {
+class Search : Fragment(), SearchAdapter.OnRemoveListener {
 
     private lateinit var container: FrameLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
 
     private lateinit var recentSearchesLayout: ViewGroup
+    private lateinit var topSearchesLayout: ViewGroup
     private lateinit var searchResultsLayout: ViewGroup
 
+    private val topSearches = mutableListOf<SearchModel>()
     private val recentSearches = mutableListOf<SearchModel>()
     private lateinit var searchAdapter: SearchAdapter
     private var lastQuery: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         recentSearchesLayout = view.findViewById(R.id.recent_searches_layout)
+        topSearchesLayout = view.findViewById(R.id.top_searches_layout)
         searchResultsLayout = view.findViewById(R.id.search_results_layout)
         this.container = view.findViewById(R.id.fragment_container)
         recyclerView = view.findViewById(R.id.recent_searches_recycler_view)
         searchView = view.findViewById(R.id.searchView)
         // Load recent searches from SharedPreferences using SharedPreferencesHelper
         loadRecentSearches()
-
+        loadTopSearches()
         // Initialize RecyclerView and Adapter for recent searches
         recyclerView.layoutManager = LinearLayoutManager(context)
-        searchAdapter = SearchAdapter(recentSearches)
+        searchAdapter = SearchAdapter(recentSearches, this)
         recyclerView.adapter = searchAdapter
 
         // Display recent searches by default
-        switchToRecentSearches()
+        switchToRecentAndTopSearches()
 
         // SearchView listener to switch to search results
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -75,9 +78,18 @@ class Search : Fragment() {
         return view
     }
 
-    private fun switchToRecentSearches() {
+    private fun switchToRecentAndTopSearches() {
         recentSearchesLayout.visibility = View.VISIBLE
         searchResultsLayout.visibility = View.GONE
+        topSearchesLayout.visibility = View.VISIBLE
+    }
+
+    private fun loadTopSearches() {
+        // Populate top searches with hard-coded data or from SharedPreferences
+        topSearches.clear()
+        topSearches.add(SearchModel("Top Search 1"))
+        topSearches.add(SearchModel("Top Search 2"))
+        topSearches.add(SearchModel("Top Search 3"))
     }
 
     private fun switchToSearchResults(query: String?) {
@@ -125,7 +137,7 @@ class Search : Fragment() {
             }
         } else {
             // If the query is blank, switch to recent searches
-            switchToRecentSearches()
+            switchToRecentAndTopSearches()
         }
     }
 
@@ -142,7 +154,7 @@ class Search : Fragment() {
 
     private fun addRecentSearch(query: String) {
         // Add a new search item to the list
-        val searchItem = SearchModel(query, System.currentTimeMillis())
+        val searchItem = SearchModel(query)
         recentSearches.add(0, searchItem) // Add to the beginning of the list
 
         // Limit the list size if needed
@@ -158,6 +170,10 @@ class Search : Fragment() {
         saveRecentSearches()
     }
 
+    override fun onRemoveItem(position: Int) {
+        // Save recent searches to SharedPreferences
+        saveRecentSearches()
+    }
     companion object {
         private const val MAX_RECENT_SEARCHES = 5 // Adjust the maximum number of recent searches as needed
     }

@@ -47,7 +47,6 @@ class Cart : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         recyclerView = view.findViewById(R.id.cart_items)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
@@ -136,9 +135,6 @@ class Cart : Fragment() {
                 }
         }
     }
-    private fun saveCartItems() {
-        SharedPreferencesHelper.saveCartItems(requireContext(), cartsArrayList)
-    }
     private fun addToCart(cartItem: CartItemModel) {
         auth.currentUser?.uid?.let { userId ->
             val cartMap = hashMapOf(
@@ -159,7 +155,6 @@ class Cart : Fragment() {
                         cartsArrayList.add(cartItem)
                         recyclerView.adapter?.notifyItemInserted(cartsArrayList.size - 1)
                         updateTotal()
-                        saveCartItems()
                         loadCartItems()
                         Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
                     } else {
@@ -175,7 +170,6 @@ class Cart : Fragment() {
         // Only update the adapter when quantity is 0
         if (carts.quantity == 0) {
             updateTotal()
-            saveCartItems()
             removeFromFirestore(carts)
         }
     }
@@ -211,10 +205,5 @@ class Cart : Fragment() {
                     Toast.makeText(context, "Failed to fetch item for deletion: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        saveCartItems()
     }
 }
