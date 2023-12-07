@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="16dp"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal"
+    android:background="@drawable/rounded_corner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Left side: Title and Price -->
+        <LinearLayout
+            android:id="@+id/leftLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold"/>
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$19.99 / kilo"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"/>
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/item_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="20 kilos left"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rightLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/item" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dividerColor="@color/black"
+        app:dividerThickness="1dp"/>
+
+</LinearLayout>

@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Cart"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
 
-    <LinearLayout
-        android:id="@+id/message_header"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:gravity="center">
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/cart"
             android:textColor="@color/primary"
             android:textSize="32sp"
             android:textStyle="bold"
-            android:layout_marginEnd="50dp"/>
+            android:layout_centerHorizontal="true"/>
 
-        <Button
-            android:id="@+id/add_dummy_data"
+        <ImageButton
+            android:id="@+id/trash_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_item" />
-
-    </LinearLayout>
+            android:src="@drawable/delete_icon"
+            android:background="@color/white"
+            android:layout_marginEnd="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"
+            app:tint="@color/red" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/nothing_in_cart_layout"

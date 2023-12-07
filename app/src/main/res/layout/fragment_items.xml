@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.Vendors"
-    android:layout_marginTop="15dp">
+    android:layout_marginTop="15dp"
+    android:animateLayoutChanges="true">
 
     <!-- Category dropdown -->
     <Spinner
@@ -17,13 +18,38 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:padding="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <!-- FrameLayout for the RecyclerView -->
+    <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/spinnerCategory"
         android:layout_marginTop="15dp"
-        tools:listitem="" />
+        android:layout_below="@id/spinnerCategory">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/spinnerCategory"
+            android:layout_marginTop="15dp"
+            tools:listitem=""
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="top|center"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/noItemsMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="top|center"
+            android:text="No Items!"
+            android:visibility="gone" />
+    </FrameLayout>
 </RelativeLayout>

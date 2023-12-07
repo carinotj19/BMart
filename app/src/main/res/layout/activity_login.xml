@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".activities.Login">
 
     <ImageView
@@ -13,7 +14,8 @@
         android:layout_height="174dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        app:tint="@color/black"/>
 
     <TextView
         android:id="@+id/logo_name"

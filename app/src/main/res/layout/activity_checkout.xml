@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:animateLayoutChanges="true"
     tools:context=".activities.Checkout">
 
     <LinearLayout
@@ -57,6 +58,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/select_icon"
                     android:layout_gravity="center"
                     android:layout_marginEnd="30dp"
                     android:layout_width="wrap_content"
@@ -89,29 +91,25 @@
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         android:layout_width="265dp"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:saveEnabled="false"
+        android:backgroundTint="@color/grey_200">
 
         <LinearLayout
+            android:background="@color/grey_200"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <ImageButton
-            android:layout_marginEnd="30dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/select_icon_outline"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:tint="@color/primary" />
-
-        <ImageView
+            <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_2"/>
+            android:src="@drawable/img_2"
+            app:tint="@color/grey_200"
+            android:tintMode="screen"/>
 
         <TextView
             android:layout_marginStart="10dp"
@@ -120,6 +118,7 @@
             android:layout_height="wrap_content"
             android:text="GCash"
             android:textSize="16sp"
+            android:background="@color/grey_500"
             android:fontFamily="@font/poppins_semibold"/>
 
         </LinearLayout>

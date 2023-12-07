@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="5dp"
+    android:elevation="5dp"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/rounded_corner">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rightLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profpic" />
+
+        </RelativeLayout>
+        <!-- Left side: Title and Price -->
+        <LinearLayout
+            android:id="@+id/leftLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold"/>
+
+            <!-- Total Items -->
+            <TextView
+                android:id="@+id/total_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4 items"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"/>
+
+            <!-- Price -->
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Price: ₱19.99"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

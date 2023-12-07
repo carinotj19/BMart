@@ -13,16 +13,23 @@
         android:icon="@drawable/outline_orders_24"
         android:title="@string/orders" />
     <item
+        android:id="@+id/virtual_store"
+        android:icon="@drawable/store_icon"
+        android:title="Virtual Store" />
+    <item
         android:id="@+id/help"
         android:icon="@drawable/baseline_help_outline_24"
         android:title="@string/help_center" />
     <item
         android:id="@+id/privacy"
+        android:icon="@drawable/privacy_icon"
         android:title="@string/privacy_and_policy" />
     <item
         android:id="@+id/terms"
+        android:icon="@drawable/terms_icon"
         android:title="@string/terms_and_conditions" />
     <item
         android:id="@+id/logOut"
+        android:icon="@drawable/logout_icon"
         android:title="@string/log_out" />
 </menu>

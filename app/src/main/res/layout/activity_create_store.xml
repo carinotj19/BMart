@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".activities.CreateStore">
+
+    <RelativeLayout
+        android:id="@+id/create_store_header"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create a Store"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/primary"
+            android:textSize="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/back_button" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"
+            app:tint="@color/primary" />
+
+    </RelativeLayout>
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_below="@id/create_store_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/create_store_layout1"
+            layout="@layout/create_store_layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/create_store_layout2"
+            layout="@layout/create_store_layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/create_store_layout3"
+            layout="@layout/create_store_layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/create_store_layout4"
+            layout="@layout/create_store_layout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include
+            android:id="@+id/create_store_layout5"
+            layout="@layout/create_store_layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ViewFlipper>
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/progress_bar"
+        android:layout_below="@id/viewFlipper"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/red"
+        android:textSize="18sp" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_below="@+id/viewFlipper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/progress_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progress_bar"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

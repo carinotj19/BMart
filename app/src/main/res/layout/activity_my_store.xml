@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    tools:context=".activities.MyStore">
+
+    <RelativeLayout
+        android:id="@+id/my_store_header"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Store"
+            android:fontFamily="@font/poppins_semibold"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textSize="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/back_button" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"
+            app:tint="@color/primary" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/view_stall"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/my_store_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_stall_card"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="15dp"
+            android:backgroundTint="@color/grey_200"
+            android:clickable="true">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View E-Stall"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="24dp"
+                android:textColor="@color/primary"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/add_products_layout"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/view_stall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/add_products_card"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="15dp"
+            android:backgroundTint="@color/grey_200"
+            android:clickable="true">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Products"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="24dp"
+                    android:textColor="@color/primary"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/orders"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/add_products_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/orders_card"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="15dp"
+            android:backgroundTint="@color/grey_200"
+            android:clickable="true">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Orders"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="24dp"
+                    android:textColor="@color/primary"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

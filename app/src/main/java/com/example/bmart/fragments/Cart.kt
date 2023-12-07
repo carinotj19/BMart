@@ -2,11 +2,13 @@ package com.example.bmart.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +28,8 @@ class Cart : Fragment() {
     private val cartsArrayList = mutableListOf<CartItemModel>()
     private lateinit var auth: FirebaseAuth
     private lateinit var fireStore: FirebaseFirestore
+    private lateinit var trashIcon: ImageButton
+    private lateinit var cartAdapter: CartAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -50,11 +54,12 @@ class Cart : Fragment() {
         recyclerView = view.findViewById(R.id.cart_items)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.setHasFixedSize(true)
-        val cartAdapter = CartAdapter(requireContext(), cartsArrayList, this)
+        cartAdapter = CartAdapter(requireContext(), cartsArrayList, this)
         recyclerView.adapter = cartAdapter
 
         auth = Firebase.auth
         fireStore = FirebaseFirestore.getInstance()
+        trashIcon = view.findViewById(R.id.trash_icon)
 
         loadCartItems()
         updateTotal()
@@ -64,22 +69,12 @@ class Cart : Fragment() {
             startActivity(intent)
         }
 
-        val addDummyDataButton = view.findViewById<Button>(R.id.add_dummy_data)
-        addDummyDataButton.setOnClickListener {
-            addDummyData()
+
+        trashIcon.setOnClickListener {
+            cartsArrayList.filter { it.isSelected }.forEach { removeFromCart(it) }
+            updateTotal()
+            updateTrashVisibility()
         }
-    }
-    private fun addDummyData() {
-        val itemsImage = R.drawable.item
-        val itemName = "Dummy Item"
-        val vendorName = "Dummy Vendor"
-        val itemPrice = 25.0
-
-        val formattedItemPrice = "₱${String.format("%.2f", itemPrice)}"
-
-        val dummyCartItem = CartItemModel(itemsImage, itemName, vendorName, formattedItemPrice)
-        addToCart(dummyCartItem)
-        Toast.makeText(context, "Dummy data added to cart", Toast.LENGTH_SHORT).show()
     }
     fun updateTotal() {
         val totalTextView: TextView = view?.findViewById(R.id.cart_items_total) ?: return
@@ -93,6 +88,7 @@ class Cart : Fragment() {
         totalTextView.text = "₱${String.format("%.2f", totalPrice)}"
     }
     private fun loadCartItems() {
+        val defaultImage = "https://firebasestorage.googleapis.com/v0/b/bmart-179b3.appspot.com/o/defaultVendorImage.jpg?alt=media&token=bb7b47e0-8089-4f3f-a737-eb9580aa0ed4"
         cartsArrayList.clear()
         if (!::auth.isInitialized) {
             auth = FirebaseAuth.getInstance()
@@ -104,7 +100,7 @@ class Cart : Fragment() {
                 .get()
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
-                        val itemsImage = document.getLong("itemImage")?.toInt() ?: R.drawable.item
+                        val itemsImage = document.getString("itemImage") ?: defaultImage
                         val itemsName = document.getString("productName") ?: "Unknown Item"
                         val vendorsName = document.getString("vendorName") ?: "Unknown Vendor"
                         val itemPrice = document.getString("itemPrice") ?: "₱0.00"
@@ -135,35 +131,6 @@ class Cart : Fragment() {
                 }
         }
     }
-    private fun addToCart(cartItem: CartItemModel) {
-        auth.currentUser?.uid?.let { userId ->
-            val cartMap = hashMapOf(
-                "productName" to cartItem.itemsName,
-                "vendorName" to cartItem.vendorsName,
-                "itemImage" to cartItem.itemsImage,
-                "itemPrice" to cartItem.itemPrice,
-                "quantity" to cartItem.quantity,
-            )
-
-            fireStore.collection("Cart")
-                .document(userId)
-                .collection("Users")
-                .add(cartMap)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Item added to Firestore cart successfully
-                        cartsArrayList.add(cartItem)
-                        recyclerView.adapter?.notifyItemInserted(cartsArrayList.size - 1)
-                        updateTotal()
-                        loadCartItems()
-                        Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
-                    } else {
-                        // Handle the failure to add the item to Firestore cart
-                        Toast.makeText(context, "Failed to add item to cart: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-        }
-    }
 
     fun removeFromCart(carts: CartItemModel) {
         cartsArrayList.remove(carts)
@@ -172,6 +139,19 @@ class Cart : Fragment() {
             updateTotal()
             removeFromFirestore(carts)
         }
+    }
+
+    fun updateTrashVisibility() {
+        trashIcon = view?.findViewById(R.id.trash_icon) ?: return
+
+        // Check if at least one item is selected
+        val isAnyItemSelected = cartsArrayList.any {
+            Log.d("ITEM SELECT", "$it")
+            it.isSelected
+        }
+
+        // Set the visibility of the trash icon based on selection status
+        trashIcon.visibility = if (isAnyItemSelected) View.VISIBLE else View.GONE
     }
 
     private fun removeFromFirestore(carts: CartItemModel) {

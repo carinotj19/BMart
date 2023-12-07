@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
     <!-- SearchView -->
@@ -15,71 +16,57 @@
         android:background="@drawable/rounded_square" />
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/search_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="visible">
 
+        <!-- Container for Recent Searches -->
         <LinearLayout
+            android:padding="10dp"
+            android:id="@+id/recent_searches_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <!-- Container for Recent Searches -->
-            <LinearLayout
-                android:padding="10dp"
-                android:id="@+id/recent_searches_layout"
+
+            <TextView
+                android:id="@+id/recent_searches_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Searches"
+                android:textSize="21sp"
+                android:fontFamily="@font/poppins_bold"
+                android:layout_marginTop="16dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recent_searches_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/recent_searches_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recent Searches"
-                    android:textSize="21sp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:layout_marginTop="16dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recent_searches_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <!-- Container for Top Searches -->
-            <LinearLayout
-                android:padding="10dp"
-                android:id="@+id/top_searches_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/top_searches_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Top Searches"
-                    android:textSize="21sp"
-                    android:fontFamily="@font/poppins_bold"
-                    android:layout_marginTop="16dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/top_searches_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content" />
         </LinearLayout>
-
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/no_results_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:visibility="gone"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
     <!-- Container for Search Results -->
-    <LinearLayout
-        android:id="@+id/search_results_layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_results_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
 </LinearLayout>

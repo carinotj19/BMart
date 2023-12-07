@@ -130,19 +130,34 @@ class Dashboard : AppCompatActivity() {
                 finish()
             }
             R.id.favourites -> {
-                Toast.makeText(applicationContext, "Clicked favourites", Toast.LENGTH_SHORT).show()
+                val intent = Intent(applicationContext, Favorites::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.orders -> {
-                Toast.makeText(applicationContext, "Clicked orders", Toast.LENGTH_SHORT).show()
+                val intent = Intent(applicationContext, Orders::class.java)
+                startActivity(intent)
+                finish()
+            }
+            R.id.virtual_store -> {
+                val intent = Intent(applicationContext, VirtualStore::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.help -> {
-                Toast.makeText(applicationContext, "Clicked help", Toast.LENGTH_SHORT).show()
+                val intent = Intent(applicationContext, Help::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.privacy -> {
-                Toast.makeText(applicationContext, "Clicked privacy", Toast.LENGTH_SHORT).show()
+                val intent = Intent(applicationContext, PrivacyPolicy::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.terms -> {
-                Toast.makeText(applicationContext, "Clicked terms", Toast.LENGTH_SHORT).show()
+                val intent = Intent(applicationContext, Terms::class.java)
+                startActivity(intent)
+                finish()
             }
             R.id.logOut -> {
                 Toast.makeText(applicationContext, "Clicked Log out", Toast.LENGTH_SHORT).show()
@@ -205,7 +220,7 @@ class Dashboard : AppCompatActivity() {
             .replace(R.id.frameLayout, fragment)
             .commit()
 
-        if (fragment is Home) {
+            if (fragment is Home) {
             supportActionBar?.show()
             bottomNavigationView.visibility = View.VISIBLE
         } else {
@@ -225,7 +240,7 @@ class Dashboard : AppCompatActivity() {
             if (receivedData == "home"){
                 replaceFragment(Home())
             }
-            if (receivedData == "Messages"){
+            if (receivedData == "messages"){
                 replaceFragment(Messages())
             }
         }

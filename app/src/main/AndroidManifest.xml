@@ -19,6 +19,51 @@
         android:theme="@style/Theme.BMart"
         tools:targetApi="31">
         <activity
+            android:name=".activities.vsActivities.AddProducts"
+            android:exported="false" />
+        <activity
+            android:name=".activities.vsActivities.Orders"
+            android:exported="false"/>
+        <activity
+            android:name=".activities.vsActivities.ViewStore"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MyStore"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CreateStore"
+            android:exported="false" />
+        <activity
+            android:name=".activities.VirtualStore"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Confirmation"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Checkout2"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Conversation"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ItemClick"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Terms"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PrivacyPolicy"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Help"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Orders"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Favorites"
+            android:exported="false" />
+        <activity
             android:name=".activities.EditProfile"
             android:exported="false" />
         <activity

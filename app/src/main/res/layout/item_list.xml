@@ -1,63 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_margin="16dp"
+    android:animateLayoutChanges="true"
+    android:orientation="horizontal">
 
-        <androidx.cardview.widget.CardView
-            android:layout_margin="10dp"
-            android:id="@+id/item_container"
-            android:layout_width="170dp"
-            android:layout_height="180dp"
-            app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+        <!-- Left side: Title and Price -->
+        <LinearLayout
+            android:id="@+id/leftLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/item_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/item" />
+            <!-- Title -->
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold"/>
 
-                    <ImageButton
-                        android:id="@+id/add_to_cart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/add_item"
-                        app:tint="@color/primary" />
+            <!-- Price -->
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$19.99"
+                android:textSize="16sp"
+                android:layout_gravity="bottom"
+                android:gravity="bottom"/>
+        </LinearLayout>
 
-                </RelativeLayout>
-                <TextView
-                    android:id="@+id/item_name"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Strawberry"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/vendor_name"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vendor 1"
-                    android:fontFamily="@font/poppins_light"
-                    android:textSize="14sp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        <RelativeLayout
+            android:id="@+id/rightLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/item" />
+
+            <!-- "+" sign -->
+            <ImageButton
+                android:id="@+id/add_to_cart"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:src="@drawable/add_item"
+                android:background="@drawable/rounded_button"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                app:tint="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dividerColor="@color/black"
+        app:dividerThickness="1dp"/>
+
 </LinearLayout>

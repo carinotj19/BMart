@@ -1,6 +1,7 @@
 package com.example.bmart.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +17,12 @@ import com.example.bmart.R
 import com.example.bmart.fragments.Cart
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 
-class CartAdapter(var context: Context, private var cartArrayList: List<CartItemModel>, private var cartFragment: Cart) :
+class CartAdapter(
+    var context: Context,
+    private var cartArrayList: List<CartItemModel>,
+    private var cartFragment: Cart) :
     RecyclerView.Adapter<CartAdapter.MyViewHolder?>() {
 
     private val fireStore = FirebaseFirestore.getInstance()
@@ -56,7 +61,7 @@ class CartAdapter(var context: Context, private var cartArrayList: List<CartItem
         holder.itemsName.text = carts.itemsName
         holder.vendorsName.text = carts.vendorsName
         updateItemPrice(holder, carts)
-        holder.itemsImage.setImageResource(carts.itemsImage)
+        Picasso.get().load(carts.itemsImage).into(holder.itemsImage)
     }
 
     override fun getItemCount(): Int {
@@ -111,12 +116,11 @@ class CartAdapter(var context: Context, private var cartArrayList: List<CartItem
         }
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemsImage: ImageView
         var itemsName: TextView
         var vendorsName: TextView
         var itemPrice: TextView
-        private var selectIcon: ImageButton
         private var isSelectFilled: Boolean = false
 
         init {
@@ -124,36 +128,6 @@ class CartAdapter(var context: Context, private var cartArrayList: List<CartItem
             itemsName = itemView.findViewById(R.id.item_name)
             vendorsName = itemView.findViewById(R.id.item_origin)
             itemPrice = itemView.findViewById(R.id.item_price)
-            selectIcon = itemView.findViewById(R.id.item_select)
-
-            selectIcon.setOnClickListener {
-                isSelectFilled = !isSelectFilled
-                updateSelectIcon()
-
-                val cardView = itemView.findViewById<CardView>(R.id.card_view)
-                val backgroundColor = if (isSelectFilled) {
-                    ContextCompat.getColor(itemView.context, R.color.grey_200) // Use the grey tone color
-                } else {
-                    ContextCompat.getColor(itemView.context, android.R.color.white) // Use the default color
-                }
-                cardView.setCardBackgroundColor(backgroundColor)
-            }
-        }
-
-        private fun updateSelectIcon() {
-            if (isSelectFilled) {
-                // Set the select icon to filled state
-                selectIcon.setImageResource(R.drawable.select_icon_filled)
-                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context,
-                    R.color.green_700
-                ))
-            } else {
-                // Set the select icon to outlined state
-                selectIcon.setImageResource(R.drawable.select_icon_outline)
-                selectIcon.setColorFilter(ContextCompat.getColor(itemView.context,
-                    R.color.green_700
-                ))
-            }
         }
     }
 }

@@ -24,6 +24,7 @@ class SearchAdapter(private val searches: MutableList<SearchModel>, private val 
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val search = searches[position]
         holder.queryTextView.text = search.query
@@ -40,8 +41,11 @@ class SearchAdapter(private val searches: MutableList<SearchModel>, private val 
                 // Notify the fragment about the removal
                 onRemoveListener.onRemoveItem(adapterPosition)
             }
+
         }
     }
+
+
 
     override fun getItemCount(): Int {
         return searches.size

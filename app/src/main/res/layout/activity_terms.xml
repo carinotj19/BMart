@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Terms"
+    android:animateLayoutChanges="true">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/back_button"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Terms and Conditions"
+            android:textColor="@color/primary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_icon"
+            app:tint="@color/primary" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Welcome to BMart.com.ph! \n\nThese terms and conditions outline the rules and regulations for the use of BMart's Website, located at www.https://BMart.com.ph. \n\nBy accessing this website we assume you accept these terms and conditions. Do not continue to use BMart.com.ph if you do not agree to take all of the terms and conditions stated on this page."
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="16dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cookies"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We employ the use of cookies. By accessing BMart.com.ph, you agreed to use cookies in agreement with the BMart's Privacy Policy.\n\nMost interactive websites use cookies to let us retrieve the user's details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies."
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="16dp" />
+
+            <!-- License Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="License"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unless otherwise stated, BMart and/or its licensors own the intellectual property rights for all material on BMart.com.ph. All intellectual property rights are reserved. You may access this from BMart.com.ph for your own personal use subjected to restrictions set in these terms and conditions."
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="16dp" />
+
+            <!-- Republish Material Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You must not:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Republish material from BMart.com.ph"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Sell, rent or sub-license material from BMart.com.ph"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Reproduce, duplicate or copy material from BMart.com.ph"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Redistribute content from BMart.com.ph"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="16dp" />
+
+            <!-- Agreement Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Free Terms and Conditions Generator."
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+
+            <!-- Comments Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. BMart does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of BMart, its agents and/or affiliates. Comments reflect the views and opinions of the person who posts their views and opinions. To the extent permitted by applicable laws, BMart shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website."
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp" />
+
+            <!-- Hyperlinking Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hyperlinking to our Content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The following organizations may link to our Website without prior written approval:"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- Government agencies;"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <!-- Disclaimer Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disclaimer"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website. Nothing in this disclaimer will:"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="- limit or exclude our or your liability for death or personal injury;"
+                android:textSize="16sp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingBottom="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

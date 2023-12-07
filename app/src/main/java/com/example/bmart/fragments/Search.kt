@@ -1,11 +1,15 @@
 package com.example.bmart.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
@@ -15,44 +19,62 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.adapters.SearchAdapter
 import com.example.bmart.models.SearchModel
 import com.example.bmart.R
+import com.example.bmart.activities.VendorDetails
+import com.example.bmart.adapters.VendorAdapter
 import com.example.bmart.helpers.SharedPreferencesHelper
+import com.example.bmart.models.VendorModel
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
-class Search : Fragment(), SearchAdapter.OnRemoveListener {
+class Search : Fragment(), SearchAdapter.OnRemoveListener, VendorAdapter.OnItemClickListener {
 
-    private lateinit var container: FrameLayout
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var searchContainer: FrameLayout
+    private lateinit var resultsRecyclerView: RecyclerView
     private lateinit var searchView: SearchView
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var recentSearchesLayout: ViewGroup
-    private lateinit var topSearchesLayout: ViewGroup
-    private lateinit var searchResultsLayout: ViewGroup
 
-    private val topSearches = mutableListOf<SearchModel>()
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
     private val recentSearches = mutableListOf<SearchModel>()
     private lateinit var searchAdapter: SearchAdapter
+
+    private lateinit var vendorAdapter: VendorAdapter
+    private lateinit var vendorList: List<VendorModel>
+
+    private lateinit var favoriteStates: Map<String, Boolean>
+
     private var lastQuery: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
+        favoriteStates = SharedPreferencesHelper.loadFavoriteStates(requireContext())
 
         recentSearchesLayout = view.findViewById(R.id.recent_searches_layout)
-        topSearchesLayout = view.findViewById(R.id.top_searches_layout)
-        searchResultsLayout = view.findViewById(R.id.search_results_layout)
-        this.container = view.findViewById(R.id.fragment_container)
-        recyclerView = view.findViewById(R.id.recent_searches_recycler_view)
+        searchContainer = view.findViewById(R.id.search_fragment_container)
+        resultsRecyclerView = view.findViewById(R.id.search_results_recycler_view)
         searchView = view.findViewById(R.id.searchView)
-        // Load recent searches from SharedPreferences using SharedPreferencesHelper
+        progressBar = view.findViewById(R.id.progress_bar)
+
         loadRecentSearches()
-        loadTopSearches()
         // Initialize RecyclerView and Adapter for recent searches
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        resultsRecyclerView.layoutManager = LinearLayoutManager(context)
         searchAdapter = SearchAdapter(recentSearches, this)
-        recyclerView.adapter = searchAdapter
+        resultsRecyclerView.adapter = searchAdapter
+
+        resultsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        vendorAdapter = VendorAdapter(emptyList(), this, favoriteStates) // Initialize adapter with empty list
+        resultsRecyclerView.adapter = vendorAdapter
 
         // Display recent searches by default
-        switchToRecentAndTopSearches()
+        switchToRecentSearches()
 
         // SearchView listener to switch to search results
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -65,81 +87,94 @@ class Search : Fragment(), SearchAdapter.OnRemoveListener {
                 }
                 // Implement logic to show search results as needed
                 switchToSearchResults(query)
+
+                progressBar.visibility = View.GONE
+                searchContainer.visibility = View.VISIBLE
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // Switch to search results when the user starts typing
-                switchToSearchResults(newText)
+                progressBar.visibility = View.VISIBLE
+                searchContainer.visibility = View.GONE
+                vendorAdapter.updateData(emptyList())
+                resultsRecyclerView.visibility = View.GONE
                 return true
             }
         })
-
+        progressBar.visibility = View.GONE
+        searchContainer.visibility = View.VISIBLE
         return view
     }
 
-    private fun switchToRecentAndTopSearches() {
+    private fun switchToRecentSearches() {
         recentSearchesLayout.visibility = View.VISIBLE
-        searchResultsLayout.visibility = View.GONE
-        topSearchesLayout.visibility = View.VISIBLE
-    }
-
-    private fun loadTopSearches() {
-        // Populate top searches with hard-coded data or from SharedPreferences
-        topSearches.clear()
-        topSearches.add(SearchModel("Top Search 1"))
-        topSearches.add(SearchModel("Top Search 2"))
-        topSearches.add(SearchModel("Top Search 3"))
+        resultsRecyclerView.visibility = View.GONE
+        val noResultsTextView = view?.findViewById<TextView>(R.id.no_results_text_view)
+        noResultsTextView?.visibility = View.GONE
     }
 
     private fun switchToSearchResults(query: String?) {
-        // Clear existing views in searchResultsLayout
-        searchResultsLayout.removeAllViews()
-
+        vendorAdapter.updateData(emptyList())
         if (!query.isNullOrBlank()) {
-            val dummyResults = listOf("Result 1", "Result 2", "Result 3")
-
-            if (dummyResults.isNotEmpty()) {
-                // Create a TextView to display the search query
-                val queryTextView = TextView(context)
-                queryTextView.text = "Search results for: $query"
-                queryTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                queryTextView.setPadding(16, 16, 16, 16)
-
-                // Add the TextView to the search results layout
-                searchResultsLayout.addView(queryTextView)
-
-                // Create TextViews for each result and add them to the search results layout
-                for (result in dummyResults) {
-                    val resultTextView = TextView(context)
-                    resultTextView.text = result
-                    resultTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-                    resultTextView.setPadding(16, 8, 16, 8)
-
-                    searchResultsLayout.addView(resultTextView)
-                }
-
-                // Show searchResultsLayout and hide recentSearchesLayout
-                searchResultsLayout.visibility = View.VISIBLE
-                recentSearchesLayout.visibility = View.GONE
-            } else {
-                // If the search results list is empty, show a message
-                val noResultsTextView = TextView(context)
-                noResultsTextView.text = "No results found."
-                noResultsTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                noResultsTextView.setPadding(16, 16, 16, 16)
-
-                searchResultsLayout.addView(noResultsTextView)
-
-                // Show searchResultsLayout and hide recentSearchesLayout
-                searchResultsLayout.visibility = View.VISIBLE
-                recentSearchesLayout.visibility = View.GONE
-            }
+            performFirestoreQuery(query)
         } else {
-            // If the query is blank, switch to recent searches
-            switchToRecentAndTopSearches()
+            recentSearchesLayout.visibility = View.VISIBLE
+            resultsRecyclerView.visibility = View.GONE
+            val noResultsTextView = view?.findViewById<TextView>(R.id.no_results_text_view)
+            noResultsTextView?.visibility = View.GONE
         }
     }
+    private fun performFirestoreQuery(query: String) {
+        val vendorsCollection = db.collection("Vendors")
+
+        // Query for properties where any substring of length 3 or more is in the 'propertyName' field
+        val queryTask: Task<QuerySnapshot> =
+            vendorsCollection.orderBy("vendorsName")
+                .startAt(query)
+                .endAt(query + "\uf8ff")
+                .get()
+
+        queryTask.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Handle the query results
+                val queryResults = task.result?.documents
+
+                Log.d("Firebase Query", "Results: $queryResults")
+                if (!queryResults.isNullOrEmpty()) {
+                    vendorList = queryResults.map { document ->
+                        VendorModel(
+                            document.getString("vendorsName")?: "",
+                            document.getString("vendorsImage") ?: "",
+                            document.getDouble("vendorsRating") ?: 0.0,
+                            document.getString("vendorsLocation") ?: "",
+                            document.id,
+                        )
+                    }
+                    // Update the RecyclerView with the search results
+                    vendorAdapter.updateData(vendorList)
+
+                    // Show searchResultsLayout and hide recentSearchesLayout
+                    resultsRecyclerView.visibility = View.VISIBLE
+                    recentSearchesLayout.visibility = View.GONE
+                } else {
+                    // If no results found, show a message outside RecyclerView
+                    resultsRecyclerView.visibility = View.GONE
+                    recentSearchesLayout.visibility = View.GONE
+                    val noResultsTextView = view?.findViewById<TextView>(R.id.no_results_text_view)
+                    noResultsTextView?.visibility = View.VISIBLE
+                    noResultsTextView?.text = "No results found."
+                    noResultsTextView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+                    noResultsTextView?.setPadding(16, 16, 16, 16)
+                }
+            } else {
+                // Handle the error
+                val exception = task.exception
+                // Log or show an error message
+                Log.e("Firebase Query", "Error: $exception")
+            }
+        }
+    }
+
 
     private fun loadRecentSearches() {
         // Load recent searches from SharedPreferences using SharedPreferencesHelper
@@ -174,6 +209,22 @@ class Search : Fragment(), SearchAdapter.OnRemoveListener {
         // Save recent searches to SharedPreferences
         saveRecentSearches()
     }
+
+    override fun onItemClick(position: Int) {
+        val clickedItem = vendorList[position]
+        val intent = Intent(requireContext(), VendorDetails::class.java)
+        val vendorName = clickedItem.vendorsName
+        val vendorRating = clickedItem.vendorsRating
+        val vendorImage = clickedItem.vendorsImage
+        val documentId = clickedItem.documentId
+        Log.d("docID", "$documentId")
+        intent.putExtra("VENDORS_NAME", vendorName)
+        intent.putExtra("VENDORS_RATING", vendorRating)
+        intent.putExtra("VENDOR_PROFILE", vendorImage)
+        intent.putExtra("VENDOR_DOCUMENT_ID", clickedItem.documentId)
+        startActivity(intent)
+    }
+
     companion object {
         private const val MAX_RECENT_SEARCHES = 5 // Adjust the maximum number of recent searches as needed
     }

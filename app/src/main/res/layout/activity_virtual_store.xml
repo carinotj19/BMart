@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/virtual_store_header"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Virtual Store"
+            android:fontFamily="@font/poppins_semibold"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:textSize="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/back_button" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/back_icon"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_centerVertical="true"
+            app:tint="@color/primary" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/my_store_layout"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/virtual_store_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/my_store_card"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:cardCornerRadius="10dp"
+            android:backgroundTint="@color/grey_200">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/logo"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Store"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="24dp"
+                    android:textColor="@color/primary"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/create_store_layout"
+        android:clickable="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/my_store_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/create_store_card"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:cardCornerRadius="10dp"
+            android:backgroundTint="@color/grey_200"
+            android:clickable="true"
+            android:focusable="true">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/logo"
+                    android:scaleType="fitCenter"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Create Store"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="24dp"
+                    android:textColor="@color/primary"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

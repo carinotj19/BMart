@@ -1,5 +1,6 @@
 package com.example.bmart.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bmart.adapters.MessageAdapter
 import com.example.bmart.models.MessageModel
 import com.example.bmart.R
+import com.example.bmart.activities.Conversation
 
 class Messages : Fragment(), MessageAdapter.OnItemClickListener {
     private lateinit var recyclerView: RecyclerView
@@ -40,7 +42,11 @@ class Messages : Fragment(), MessageAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         Toast.makeText(requireContext(), "Conversation #$position is private", Toast.LENGTH_SHORT).show()
         val clickedItem = messagesArrayList[position]
-        clickedItem.name = "clicked"
+
+        val intent = Intent(requireContext(), Conversation::class.java)
+        intent.putExtra("USER_NAME", clickedItem.name)
+        intent.putExtra("PROFILE_PICTURE", clickedItem.profilePicture)
+        startActivity(intent)
     }
 
     private fun dataInitialize() {

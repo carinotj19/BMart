@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/shimmer_view_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:animateLayoutChanges="true">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/vendor_container"

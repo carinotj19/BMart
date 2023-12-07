@@ -1,5 +1,11 @@
 package com.example.bmart.models
 
-class CartItemModel(var itemsImage: Int, var itemsName: String, var vendorsName: String, var itemPrice: String){
+data class CartItemModel @JvmOverloads constructor(
+    var itemsImage: String = "",
+    var itemsName: String = "",
+    var vendorsName: String = "",
+    var itemPrice: String = "",
+    var isSelected: Boolean = false)
+{
     var quantity: Int = 1
 }
