@@ -1,5 +1,6 @@
 package com.example.bmart.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -29,5 +30,12 @@ class Confirmation : AppCompatActivity() {
             successText.visibility = View.VISIBLE
             backToMenu.visibility = View.VISIBLE
         }, 3000)
+
+        backToMenu.setOnClickListener{
+            val confirmIntent = Intent(this, Dashboard::class.java)
+            intent.putExtra("fragment", "home")
+            startActivity(confirmIntent)
+            finish()
+        }
     }
 }
